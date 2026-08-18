@@ -1,21 +1,44 @@
-<!DOCTYPE html><html><head><style>
-body{margin:0;height:100vh;display:flex;align-items:center;justify-content:center;background:#0f0f0f;color:white;font-family:Arial;text-align:center}
-.card{background:#1a1a1a;padding:40px;border-radius:20px;max-width:400px;box-shadow:0 10px 40px rgba(255,0,0,0.3);border:1px solid #ff3b30}
-h1{font-size:60px;margin:0} h2{color:#ff3b30} p{color:#aaa} a{color:#ff3b30;text-decoration:none;font-weight:bold}
-</style></head><body>
-    document.getElementById("proceed").onclick = async () => {
-  const otp = prompt("🔒 Parent Lock: Ye site blocked hai. Parents ka OTP dalo jo unke mail/Telegram pe gaya hai:");
-  if(!otp) return;
-  
-  const res = await chrome.runtime.sendMessage({type: "VERIFY_OTP", otp: otp});
-  if(res.success) {
-    location.href = params.get("url"); // OTP sahi hai to jaane do
-  } else {
-    alert("❌ Galat OTP! Parents ko alert bhej diya gaya hai.");
-    // Yaha fir se parents ko alert bhejo
-    chrome.runtime.sendMessage({type: "REQUEST_DEACTIVATE"});
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Site Blocked - Fraud Blocker</title>
+<style>
+body { margin:0; font-family:Inter, sans-serif; background:#0a0a0a; color:white; display:flex; align-items:center; justify-content:center; min-height:100vh; }
+.card { background:#1a1a1a; border:1px solid #333; border-radius:20px; padding:40px; max-width:520px; text-align:center; box-shadow:0 20px 60px rgba(255,59,48,0.3); }
+.icon { font-size:70px; }
+h1 { color:#FF3B30; margin:15px 0 5px; }
+h2 { font-size:14px; color:#888; font-weight:normal; word-break:break-all; }
+.details { background:#222; padding:15px; border-radius:12px; margin:20px 0; text-align:left; font-size:13px; color:#ccc; line-height:1.5; }
+button { padding:12px 20px; border-radius:10px; border:none; font-weight:bold; cursor:pointer; margin:5px; }
+.primary { background:white; color:black; }
+.danger { background:#FF3B30; color:white; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="icon">🚫</div>
+  <h1 id="reason">Scam Blocked!</h1>
+  <h2 id="url"></h2>
+  <div class="details" id="details"></div>
+  <p style="font-size:12px; color:#666;">Fraud Blocker Extension ne is site ko aapki safety ke liye block kiya hai.</p>
+  <button class="primary" onclick="history.back()">⬅️ Go Back Safe</button>
+  <button class="danger" id="proceed">⚠️ Fir bhi jana hai (Risky)</button>
+  <p style="margin-top:15px; font-size:11px; color:#555;">Blocked by Fraud Blocker - Payment Scam Shield</p>
+</div>
+<script>
+const params = new URLSearchParams(location.search);
+document.getElementById("reason").innerText = params.get("reason") || "Scam Detected";
+document.getElementById("url").innerText = params.get("url") || "";
+document.getElementById("details").innerText = params.get("details") || "Ye site unsafe hai.";
+
+document.getElementById("proceed").onclick = () => {
+  if(confirm("Pakka jana hai? Ye site scam ho sakti hai!")) {
+    const target = params.get("url");
+    if(target) location.href = target;
   }
-}
-<div class="card"><h1>🚫</h1><h2>18+ Site Blocked</h2><p>Blocked by NoPorn V2 - 5000+ Sites Protection</p><p id="site" style="font-size:11px;color:#555;word-break:break-all"></p><p>Blur + Block active. Stay clean bhai 💪</p><a href="https://google.com">Go to Safe Search</a></div>
-<script>document.getElementById("site").innerText = new URLSearchParams(location.search).get("site")||"";</script>
-</body></html>
+};
+</script>
+</body>
+</html>
