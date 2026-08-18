@@ -1,30 +1,48 @@
+
 <!DOCTYPE html>
-<html><head><style>
-body{width:320px;font-family:Arial;background:#111;color:white;padding:15px;text-align:center}
-h2{color:#ff3b30;margin:5px}
-button{width:100%;padding:11px;margin:5px 0;border:none;border-radius:8px;font-weight:bold;cursor:pointer}
-#blockBtn{background:#ff3b30;color:white}
-#unblockBtn{background:#333;color:white}
-input{width:92%;padding:9px;margin:5px;border-radius:6px;border:none}
-.small{font-size:11px;color:#888}
-.badge{background:#222;padding:6px 10px;border-radius:20px;font-size:12px;display:inline-block;margin:5px}
-</style></head>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+body { width: 320px; font-family: Inter, sans-serif; margin:0; padding:0; background:#0f0f0f; color:white; }
+.header { background:#FF3B30; padding:18px; text-align:center; }
+.header h1 { margin:0; font-size:18px; }
+.header p { margin:5px 0 0; font-size:12px; opacity:0.9; }
+.stats { display:flex; justify-content:space-around; padding:15px; background:#1a1a1a; }
+.stat { text-align:center; }
+.stat b { display:block; font-size:22px; color:#FF3B30; }
+.stat span { font-size:11px; color:#aaa; }
+.content { padding:15px; }
+.switch { display:flex; justify-content:space-between; align-items:center; background:#222; padding:10px 12px; border-radius:8px; margin-bottom:10px; }
+button { width:100%; padding:10px; background:#FF3B30; color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer; margin-top:8px; }
+ small { color:#888; font-size:11px; }
+ ul { padding-left:18px; font-size:12px; color:#ccc; }
+</style>
+</head>
 <body>
-<h2>🔞 NoPorn V2</h2>
-<div><span class="badge" id="count">5000+ sites</span> <span class="badge" id="status">Active</span></div>
-<p class="small">Blocks + Blurs adult content automatically</p>
-<label style="display:flex;align-items:center;justify-content:center;gap:8px;margin:8px"><input type="checkbox" id="blurToggle" checked style="width:auto"> Enable Blur Mode</label>
-<input id="customSite" placeholder="Add custom site to block">
-<button id="addBtn" style="background:#222;color:white">+ Block This Site</button>
-<hr>
-<div id="parentLock" style="background:#222;padding:10px;border-radius:10px;margin-top:10px">
-  <p style="font-size:11px">🔒 Parent Lock Setup</p>
-  <input id="parentEmail" placeholder="4455ashutosha@gmail.com" style="width:100%;padding:8px;border-radius:5px;border:none">
-  <button id="saveParent">Save & Lock</button>
+<div class="header">
+  <h1>🛡️ Fraud Blocker</h1>
+  <p>Sare fake payments & http sites blocked</p>
 </div>
-<input id="pass" type="password" placeholder="Set / Enter password">
-<button id="blockBtn">Enable Full Protection</button>
-<button id="unblockBtn">Disable Protection</button>
-<p class="small">Made for you bhai 💪</p>
+<div class="stats">
+  <div class="stat"><b id="blockedCount">0</b><span>Blocked</span></div>
+  <div class="stat"><b>ON</b><span>Status</span></div>
+  <div class="stat"><b id="httpCount">100%</b><span>HTTP Block</span></div>
+</div>
+<div class="content">
+  <div class="switch"><span>Block all HTTP sites</span><span>✅</span></div>
+  <div class="switch"><span>Block Fake Payment Sites</span><span>✅</span></div>
+  <div class="switch"><span>UPI PIN Scam Detection</span><span>✅</span></div>
+  <button id="whitelistBtn">Whitelist Current Site</button>
+  <button id="testBtn" style="background:#333;">Open Test Sites</button>
+  <p style="margin-top:12px;"><small>Features:</small></p>
+  <ul>
+    <li>http:// sites auto block</li>
+    <li>paytm, phonepe, gpay fake offers block</li>
+    <li>SBI, RBI KYC scams block</li>
+    <li>UPI PIN loot detection</li>
+  </ul>
+</div>
 <script src="popup.js"></script>
-</body></html>
+</body>
+</html>
