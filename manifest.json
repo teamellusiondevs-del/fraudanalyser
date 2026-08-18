@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "ULTIMATE 2000+ Blocker - YT Only",
+  "version": "4.0.0",
+  "description": "Blocks 1000 Betting + 1000 OTT/Piracy sites including goamericano, castle, pikashow, movies4u. YouTube only allowed for movies.",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "ULTIMATE 2000 Blocker",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "blocked.html"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}
